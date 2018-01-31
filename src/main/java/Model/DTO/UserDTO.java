@@ -2,15 +2,27 @@ package Model.DTO;
 
 import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;
+import Model.EntityToDto;
 
-public class UserDTO {
+public class UserDTO extends EntityToDto<UserDTO, User> {
     private String username;
     private String email;
-    private Score score;
 
-    public void toDTO(User user, Score score){
-        this.username = user.getUsername();
-        this.email = user.getEmail();
-        this.score = score;
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
