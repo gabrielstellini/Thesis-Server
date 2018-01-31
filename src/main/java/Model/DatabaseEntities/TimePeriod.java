@@ -1,4 +1,4 @@
-package Model;
+package Model.DatabaseEntities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Time;
 
-//@Entity
+@Entity
 public class TimePeriod {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

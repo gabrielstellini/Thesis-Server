@@ -1,6 +1,4 @@
-package Model;
-
-import Model.UserPreferences;
+package Model.DatabaseEntities;
 
 import javax.persistence.*;
 
@@ -22,8 +20,6 @@ public class User {
 
     @OneToOne
     private UserPreferences userPreferences;
-
-
 
     public String getEmail() {
         return email;
