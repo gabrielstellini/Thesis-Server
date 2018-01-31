@@ -1,0 +1,89 @@
+{
+	"info": {
+		"name": "Spring SEHM",
+		"_postman_id": "a6fdfaf8-c718-27a2-b72c-483173dde3ef",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/users/search/aUs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/users/search/aUser1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"search",
+								"aUser1"
+							]
+						},
+						"description": "Search for user (useful for adding a friend)"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users/aUser2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/users/aUser2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"aUser2"
+							]
+						},
+						"description": "Get a specific user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Score",
+			"description": "",
+			"item": [
+				{
+					"name": "GET user score",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/score/aUser2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"score",
+								"aUser2"
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
