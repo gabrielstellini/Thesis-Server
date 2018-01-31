@@ -1,0 +1,10 @@
+Read data from database ✓
+View JSON from database online ✓
+Add services ✓
+Test post request ✓
+Save into database ✓
+------------------------------------------
+Add rest of services
+[OPTIONAL]Continue research on Tokens
+------------------------------------------
+Try algorithm
