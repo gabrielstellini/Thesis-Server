@@ -1,7 +1,7 @@
 package Controller;
 
-import Model.DataPoint;
-import Model.User;
+import Model.DatabaseEntities.DataPoint;
+import Model.DatabaseEntities.User;
 
 
 public class StressManager {

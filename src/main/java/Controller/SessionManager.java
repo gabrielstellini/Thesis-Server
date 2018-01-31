@@ -1,15 +1,14 @@
 package Controller;
 
-import Model.Food;
-import Model.TimePeriod;
-import Model.User;
+import Model.DatabaseEntities.Food;
+import Model.DatabaseEntities.TimePeriod;
+import Model.DatabaseEntities.User;
 
 import java.sql.Timestamp;
 
 public class SessionManager {
 
     StressManager stressManager = new StressManager();
-    DatabaseConnection databaseConnection = new DatabaseConnection();
     ScoreManager scoreManager = new ScoreManager();
 
     public void login(String username, String password){
