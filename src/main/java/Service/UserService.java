@@ -21,15 +21,8 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User[] findAllBySimilarUsername(String username){
-        String regex = "(?i)(.*)" + username + "(.*)";
-
-        Iterable<User> usersIterable = userRepository.findAll();
-        User[] users = StreamSupport
-                .stream(usersIterable.spliterator(), false)
-                .filter(user -> user.getUsername().matches(regex))
-                .toArray(User[]::new);
-        return users;
+    public User[] findByUsernameIsContaining(String query){
+        return userRepository.findByUsernameIsContaining(query);
     }
 
     public Iterable<User> findAll(){
