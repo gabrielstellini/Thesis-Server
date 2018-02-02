@@ -1,0 +1,39 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: google
+  jpa:
+      database: MYSQL
+      hibernate:
+          ddl-auto: none
+
+  datasource:
+      url: jdbc:mysql://localhost:3306/db_sehm
+      username: springuser
+      password: ThePassword
+      driver-class-name: com.mysql.jdbc.Driver
+
+  #none           This is the default for MySQL, no change to the database structure.
+  #update         Hibernate changes the database according to the given Entity structures.
+  #create         Creates the database every time, but don't drop it when close.
+  #create-drop    Creates the database then drops it when the SessionFactory closes.
+
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      clientId: 257338411423-78okl2i4qqrbke1l8qovm2ted6oo5j9a.apps.googleusercontent.com
+      clientSecret: RxIY_X2pXt_XgG2ns17uGIGS
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+# Server configuration
+server:
+ port: 8181
