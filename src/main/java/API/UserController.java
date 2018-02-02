@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/sign-up")
     public void signUp(@RequestBody User user) {
@@ -31,7 +35,7 @@ public class UserController {
     @GetMapping("/search/{username}")
     public UserDTO[] getAllUsers(@PathVariable String username){
 
-        User[] users = userService.findAllBySimilarUsername(username);
+        User[] users = userService.findByUsernameIsContaining(username);
         UserDTO[] usersDTO = new UserDTO[users.length];
 
         for (int i = 0; i < users.length; i++) {
@@ -42,10 +46,10 @@ public class UserController {
         return usersDTO;
     }
 
-    @GetMapping("c")
+    @GetMapping("/deprecated/allUsers")
     public User[] getAllUsers(){
-        //TODO: Delete me (kept to expedite sign up)
-        return userService.findAllBySimilarUsername("");
+        //TODO: Delete me (kept to check API is up)
+        return userService.findByUsernameIsContaining("");
     }
 
 }
