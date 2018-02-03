@@ -7,4 +7,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findByUsername(String username);
     User[] findByUsernameIsContaining(String query);
     boolean existsByGoogleId(String googleId);
+    User findByGoogleId(String googleId);
 }
