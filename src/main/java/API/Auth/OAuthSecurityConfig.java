@@ -50,16 +50,22 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
         super.configure(auth);
     }
 
-    /* This method is for overriding some configuration of the WebSecurity
+    /*
+     This method is for overriding some configuration of the WebSecurity
      If you want to ignore some request or request patterns then you can
-     specify that inside this method.*/
+     specify that inside this method.
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
     }
 
-    /*This method is used for override HttpSecurity of the web Application.
-    We can specify our authorization criteria inside this method.*/
+    /*
+    This method is used for override HttpSecurity of the web Application.
+    We can specify our authorization criteria inside this method.
+
+    Basically, this part handles login and logout
+    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
