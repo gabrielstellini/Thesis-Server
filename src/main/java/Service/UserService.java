@@ -30,13 +30,8 @@ public class UserService {
     }
 
     public void save(User user){
-        if(user.getPassword() != null) {
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        }
-
         //TODO: more robust checks for whether a user is valid
-        if(user.getUsername() != null && (user.getPassword() != null || user.getGoogleId() != null)) {
+        if(user.getUsername() != null && user.getGoogleId() != null) {
             userRepository.save(user);
         }
     }

@@ -10,7 +10,6 @@ public class User {
 
     private String email;
     private String username;
-    private String password;
     private String googleId;
     private boolean hasMedication;
     private boolean hasFinancialPressure;
@@ -20,6 +19,21 @@ public class User {
 
     @OneToOne
     private UserPreferences userPreferences;
+
+    public User(){
+
+    }
+
+    public User(User user){
+        email = user.getEmail();
+        username = user.getUsername();
+        googleId = user.getGoogleId();
+        hasMedication = user.hasMedication;
+        hasFinancialPressure = user.hasFinancialPressure;
+        hasEmotionalSupport = user.hasEmotionalSupport;
+        isMale = user.isMale;
+        age = user.age;
+    }
 
     public String getEmail() {
         return email;
@@ -35,14 +49,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getGoogleId() {
