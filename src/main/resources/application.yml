@@ -31,6 +31,8 @@ security:
         - openid
         - email
         - profile
+#        No way to read age yet
+#        - https://www.googleapis.com/auth/plus.login
     resource:
       userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
       preferTokenInfo: true
