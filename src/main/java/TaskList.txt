@@ -4,9 +4,28 @@ Add services ✓
 Test post request ✓
 Save into database ✓
 ------------------------------------------
-Continue research on Tokens
+Continue research on Tokens ✓
 ------------------------------------------
-Add rest of services
-[OPTIONAL]Continue research on Tokens
+[OPTIONAL]Continue research on Tokens ✓
 ------------------------------------------
 Try algorithm
+
+
+
+
+Notes:
+
+Flow
+----------------------------------------------------------------------------
+User logs in with google
+User has access to APIs, however most details are empty regarding the user
+User can call /user/details to change preferences
+
+
+
+Updating a user:
+
+     User user = userRepository.findByClientId(id);
+      user.setEmail(email);
+      user.setName(name);
+      userDao.save(user);
