@@ -1,5 +1,6 @@
 package API.Auth;
 
+import Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
@@ -11,10 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import javax.servlet.Filter;
 
 /**
  * Modifying or overriding the default spring boot security.
@@ -26,6 +28,12 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     private OAuth2ClientContext oauth2ClientContext;
     private AuthorizationCodeResourceDetails authorizationCodeResourceDetails;
     private ResourceServerProperties resourceServerProperties;
+    private final UserService userService;
+
+    @Autowired
+    public OAuthSecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setOauth2ClientContext(OAuth2ClientContext oauth2ClientContext) {
@@ -84,16 +92,16 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 // Setting the filter for the URL "/google/login".
-                .addFilterAt(filter(), BasicAuthenticationFilter.class)
+                .addFilterAt(ssoFilter(), BasicAuthenticationFilter.class)
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
     /*This method for creating filter for OAuth authentication.*/
-    private OAuth2ClientAuthenticationProcessingFilter filter() {
+    private Filter ssoFilter() {
         //Creating the filter for "/google/login" url
-        OAuth2ClientAuthenticationProcessingFilter oAuth2Filter = new OAuth2ClientAuthenticationProcessingFilter(
-                "/google/login");
+        OAuth2ClientAuthenticationProcessingAndSavingFilter oAuth2Filter = new OAuth2ClientAuthenticationProcessingAndSavingFilter(
+                "/google/login", userService);
 
         //Creating the rest template for getting connected with OAuth service.
         //The configuration parameters will inject while creating the bean.
