@@ -21,7 +21,6 @@ public class UserRestController {
         Authentication a = SecurityContextHolder.getContext().getAuthentication();
         String clientId = ((OAuth2Authentication) a).getOAuth2Request().getClientId();
 
-        System.out.println(clientId);
         return user;
     }
 }
