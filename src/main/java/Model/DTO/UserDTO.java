@@ -7,7 +7,7 @@ import Model.EntityToDto;
 public class UserDTO extends EntityToDto<UserDTO, User> {
     private String username;
     private String email;
-
+    private String picture;
 
 
     public String getUsername() {
@@ -24,5 +24,13 @@ public class UserDTO extends EntityToDto<UserDTO, User> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

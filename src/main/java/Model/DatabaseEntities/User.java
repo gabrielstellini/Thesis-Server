@@ -16,6 +16,7 @@ public class User {
     private boolean hasEmotionalSupport;
     private boolean isMale;
     private short age;
+    private String picture;
 
     @OneToOne
     private UserPreferences userPreferences;
@@ -113,5 +114,13 @@ public class User {
 
     public void setId(Integer id) {
         Id = id;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
