@@ -93,8 +93,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // Setting the filter for the URL "/google/login".
                 .addFilterAt(ssoFilter(), BasicAuthenticationFilter.class)
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .csrf().disable();
     }
 
     /*This method for creating filter for OAuth authentication.*/

@@ -26,7 +26,7 @@ security:
       clientSecret: RxIY_X2pXt_XgG2ns17uGIGS
       accessTokenUri: https://www.googleapis.com/oauth2/v4/token
       userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
-      clientAuthenticationScheme: form
+      clientAuthenticationScheme: header
       scope:
         - openid
         - email
