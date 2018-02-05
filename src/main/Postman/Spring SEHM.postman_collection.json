@@ -11,20 +11,62 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/users/search/aUs",
+					"name": "Login with google",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltYBUhpcX8f9iEX8ISdvQ__vEIDn1FkytIiBQ3GmI6dMmm3G2KI_5G1Cx7PTzkYZL4k4qvOLoJmcqdNRe1Hv1p9CN7NoI-mUHjwnq3JmF2aY9mzO81u8zegrByt",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/google/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"google",
+								"login"
+							]
+						},
+						"description": "login URL"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/users/search/aUser1",
+							"raw": "http://localhost:8181/user/search/aUser1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8181",
 							"path": [
-								"users",
+								"user",
 								"search",
 								"aUser1"
 							]
@@ -34,24 +76,117 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/users/aUser2",
+					"name": "Get user",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/users/aUser2",
+							"raw": "http://localhost:8181/user/aUser2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8181",
 							"path": [
-								"users",
+								"user",
 								"aUser2"
 							]
 						},
 						"description": "Get a specific user"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign up",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBXLJinxIdEuVkDW9nCBVZfCV_Hso4W3kXMsuXIUNMDvmZToxCS0h4WRU3fPnSqPvEdPQzDDllkT-KU4eQBvgxPGTaPc7xoVxVHqLAgWdWEHK59qaBTohbc9D",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"test\",\n\t\"hasMedication\": true,\n\t\"hasFinancialPressure\": true,\n\t\"hasEmotionalSupport\": false,\n\t\"isMale\": false,\n\t\"dateOfBirth\":1517828449\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8181/user/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"user",
+								"sign-up"
+							]
+						},
+						"description": "Sign up"
+					},
+					"response": []
+				},
+				{
+					"name": "[Deprecated] get all users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/user/deprecated/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"user",
+								"deprecated",
+								"all"
+							]
+						},
+						"description": "Deprecated get all users"
 					},
 					"response": []
 				}
@@ -64,24 +199,301 @@
 				{
 					"name": "GET user score",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/score/aUser2",
+							"raw": "http://localhost:8181/score/110521304707277721967",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8181",
 							"path": [
 								"score",
-								"aUser2"
+								"110521304707277721967"
 							]
 						},
 						"description": "Gets details on a specific user"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "b35d5754-ac4d-4db2-b2b5-73a9519cedf8",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": ""
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": ""
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": ""
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": ""
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": ""
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": ""
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": ""
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Food",
+			"description": "All food related items\n",
+			"item": [
+				{
+					"name": "GET foods",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/food/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"food",
+								""
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "e0c05ba2-bffe-48c2-9927-60316a3c1c5a",
+							"name": "GET user score",
+							"originalRequest": {
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": 108,
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
 				}
 			]
 		}
