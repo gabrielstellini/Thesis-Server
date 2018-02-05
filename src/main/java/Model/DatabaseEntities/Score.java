@@ -9,7 +9,8 @@ public class Score {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer Id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     private Date date;
     private int Points;
