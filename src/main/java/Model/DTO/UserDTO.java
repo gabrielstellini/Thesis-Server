@@ -1,14 +1,13 @@
 package Model.DTO;
 
-import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;
 import Model.EntityToDto;
 
 public class UserDTO extends EntityToDto<UserDTO, User> {
     private String username;
     private String email;
+    private String googleId;
     private String picture;
-
 
     public String getUsername() {
         return username;
@@ -32,5 +31,13 @@ public class UserDTO extends EntityToDto<UserDTO, User> {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 }
