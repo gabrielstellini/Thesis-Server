@@ -1,6 +1,7 @@
 package Model.DatabaseEntities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
@@ -15,7 +16,7 @@ public class User {
     private boolean hasFinancialPressure;
     private boolean hasEmotionalSupport;
     private boolean isMale;
-    private short age;
+    private Date dateOfBirth;
     private String picture;
 
     @OneToOne
@@ -33,7 +34,7 @@ public class User {
         hasFinancialPressure = user.hasFinancialPressure;
         hasEmotionalSupport = user.hasEmotionalSupport;
         isMale = user.isMale;
-        age = user.age;
+        dateOfBirth = user.dateOfBirth;
     }
 
     public String getEmail() {
@@ -60,7 +61,7 @@ public class User {
         this.googleId = googleId;
     }
 
-    public boolean isHasMedication() {
+    public boolean hasMedication() {
         return hasMedication;
     }
 
@@ -68,7 +69,7 @@ public class User {
         this.hasMedication = hasMedication;
     }
 
-    public boolean isHasFinancialPressure() {
+    public boolean hasFinancialPressure() {
         return hasFinancialPressure;
     }
 
@@ -76,7 +77,7 @@ public class User {
         this.hasFinancialPressure = hasFinancialPressure;
     }
 
-    public boolean isHasEmotionalSupport() {
+    public boolean hasEmotionalSupport() {
         return hasEmotionalSupport;
     }
 
@@ -90,14 +91,6 @@ public class User {
 
     public void setMale(boolean male) {
         isMale = male;
-    }
-
-    public short getAge() {
-        return age;
-    }
-
-    public void setAge(short age) {
-        this.age = age;
     }
 
     public UserPreferences getUserPreferences() {
@@ -116,6 +109,15 @@ public class User {
         Id = id;
     }
 
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getPicture() {
         return picture;
     }
@@ -123,4 +125,5 @@ public class User {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
 }
