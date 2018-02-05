@@ -1,14 +1,20 @@
 package API;
 
+import Model.DTO.SignUpUserDTO;
 import Model.DTO.UserDTO;
 import Model.DatabaseEntities.User;
 import Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashMap;
+
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -19,7 +25,22 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody User user) {
+    public void signUp(@RequestBody @NotNull SignUpUserDTO signUpUserDTO) {
+        Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();
+        LinkedHashMap<String, String> userDetails = (LinkedHashMap<String, String>)((OAuth2Authentication) authentication).getUserAuthentication().getDetails();
+
+        String userId = userDetails.get("sub");
+
+        User user = userService.findByGoogleId(userId);
+
+        user.setHasEmotionalSupport(signUpUserDTO.hasEmotionalSupport());
+        user.setHasFinancialPressure(signUpUserDTO.hasFinancialPressure());
+        user.setHasMedication(signUpUserDTO.hasMedication());
+        user.setUsername(signUpUserDTO.getUsername());
+        user.setMale(signUpUserDTO.isMale());
+        user.setDateOfBirth(signUpUserDTO.getDateOfBirth());
+
+
         userService.save(user);
     }
 
@@ -46,7 +67,7 @@ public class UserController {
         return usersDTO;
     }
 
-    @GetMapping("/deprecated/allUsers")
+    @GetMapping("/deprecated/all")
     public User[] getAllUsers(){
         //TODO: Delete me (kept to check API is up)
         return userService.findByUsernameIsContaining("");
