@@ -33,6 +33,10 @@ public class UserService {
         return userRepository.existsByGoogleId(clientId);
     }
 
+    public User findByGoogleId(String clientId){
+        return userRepository.findByGoogleId(clientId);
+    }
+
     public void save(User user){
         //TODO: more robust checks for whether a user is valid
         if(user.getUsername() != null && user.getGoogleId() != null) {
