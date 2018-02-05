@@ -1,0 +1,2 @@
+INSERT INTO FOOD VALUES (1, 100, 'Apple', 1, 1);
+INSERT INTO food VALUES (2, 100, 'Apple', 1, 2);
