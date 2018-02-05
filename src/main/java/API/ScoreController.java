@@ -2,6 +2,7 @@ package API;
 
 import Model.DTO.ScoreDTO;
 import Model.DTO.UserDTO;
+import Model.DTO.UserScoreDTO;
 import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;
 import Service.ScoreService;
@@ -18,22 +19,31 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
-    @GetMapping("/{username}")
-    public ScoreDTO[] getUserScore(@PathVariable String username){
-        Score[] scores = scoreService.findByUsername(username);
+    @GetMapping("/{userId}")
+    public UserScoreDTO getUserScore(@PathVariable String userId){
+        UserScoreDTO userScoreDTO = new UserScoreDTO();
+
+        Score[] scores = scoreService.findByGoogleId(userId);
+        UserDTO userDTO = new UserDTO();
+
+
+        if(scores[0] != null){
+            User user = scores[0].getUser();
+            userDTO.toDto(user, userDTO);
+        }
 
         ScoreDTO[] scoresDTO = new ScoreDTO[scores.length];
 
         for (int i = 0; i < scores.length; i++) {
             scoresDTO[i] = new ScoreDTO();
             scoresDTO[i].toDto(scores[i], scoresDTO[i]);
-
-            User user = scores[i].getUser();
-            UserDTO userDTO = new UserDTO();
-            userDTO.toDto(user, userDTO);
-
-            scoresDTO[i].setUser(userDTO);
         }
-        return scoresDTO;
+
+        userScoreDTO.setUser(userDTO);
+        userScoreDTO.setScores(scoresDTO);
+
+        return userScoreDTO;
     }
+
+
 }

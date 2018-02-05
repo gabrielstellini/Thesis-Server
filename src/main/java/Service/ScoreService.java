@@ -19,8 +19,8 @@ public class ScoreService {
         this.userRepository = userRepository;
     }
 
-    public Score[] findByUsername(String username){
-        User user = userRepository.findByUsername(username);
+    public Score[] findByGoogleId(String googleId){
+        User user = userRepository.findByGoogleId(googleId);
         Score[] scores = scoreRepository.findByUser(user);
         return scores;
     }
