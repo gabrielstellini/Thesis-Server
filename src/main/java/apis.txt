@@ -1,10 +1,14 @@
-/users
-    /sign-up                - POST, adds a user
-    /{username}             - GET, gets a specific user
-    /search/{username}      - GET, searches and returns all the usernames similar to the input
-    /deprecated/allUsers    - returns all users, all details exposed
+/user
+    /sign-up                - POST, adds a user                                                         ✓
+    /{username}             - GET, gets a specific user                                                 ✓
+    /search/{username}      - GET, searches and returns all the usernames similar to the input          ✓
+    /deprecated/allUsers    - returns all users, all details exposed                                    ✓
+    /preferences            - GET, get user preferences (preffered time)                                ✗
+                            - POST, update user preferences                                             ✗
 /score
-    /{username}             - GET, all scores for a user
-/home
-    /                       - demo
-    /index                  - demo
+    /{username}             - GET, all scores for a user                                                ✓
+
+/datapoint                  - POST, adds a user specific datapoint                                      ✗
+
+/food                       - POST, adds a food (user specific)                                         ✗
+                            - DELETE, removes a food                                                    ✗
