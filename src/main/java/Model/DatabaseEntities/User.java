@@ -7,7 +7,7 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer Id;
+    private Integer id;
 
     private String email;
     private String username;
@@ -18,9 +18,6 @@ public class User {
     private boolean isMale;
     private Date dateOfBirth;
     private String picture;
-
-    @OneToOne
-    private UserPreferences userPreferences;
 
     public User(){
 
@@ -93,20 +90,12 @@ public class User {
         isMale = male;
     }
 
-    public UserPreferences getUserPreferences() {
-        return userPreferences;
-    }
-
-    public void setUserPreferences(UserPreferences userPreferences) {
-        this.userPreferences = userPreferences;
-    }
-
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
 
