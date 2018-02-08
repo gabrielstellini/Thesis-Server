@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface FoodRepository extends CrudRepository<Food, Long> {
     Food[] findByUser(User user);
+    Food findById(Integer id);
+    void removeById(Integer id);
 }

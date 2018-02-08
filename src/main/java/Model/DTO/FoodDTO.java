@@ -4,6 +4,7 @@ import Model.DatabaseEntities.Food;
 import Model.EntityToDto;
 
 public class FoodDTO extends EntityToDto<FoodDTO, Food> {
+    private Integer Id;
     private String name;
     private int quantity;
     private int calories;
@@ -30,5 +31,13 @@ public class FoodDTO extends EntityToDto<FoodDTO, Food> {
 
     public void setCalories(int calories) {
         this.calories = calories;
+    }
+
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer id) {
+        Id = id;
     }
 }

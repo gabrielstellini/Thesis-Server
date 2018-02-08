@@ -4,18 +4,16 @@ import Model.DTO.FoodDTO;
 import Model.DatabaseEntities.Food;
 import Service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/food")
-public class FoodController {
+public class FoodController extends MainController{
     private final FoodService foodService;
 
     @Autowired
@@ -23,12 +21,9 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public FoodDTO[] getFoods(){
-        Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();
-        LinkedHashMap<String, String> userDetails = (LinkedHashMap<String, String>)((OAuth2Authentication) authentication).getUserAuthentication().getDetails();
-
-        String googleId = userDetails.get("sub");
+        String googleId = getCurrentUser().getGoogleId();
 
         Food[] foods = foodService.findByGoogleId(googleId);
         FoodDTO[] foodDTOS = new FoodDTO[foods.length];
@@ -40,6 +35,35 @@ public class FoodController {
 
         return foodDTOS;
 
+    }
+
+    @PostMapping("")
+    public void addFood(@RequestBody @NotNull FoodDTO foodDto){
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        Food food = new Food();
+        food.setCalories(foodDto.getCalories());
+        food.setName(foodDto.getName());
+        food.setQuantity(foodDto.getQuantity());
+        food.setUser(getCurrentUser());
+        food.setTimestamp(timestamp.getTime());
+
+        //TODO: calculate stress
+
+        foodService.save(food);
+    }
+
+    @Transactional
+    @DeleteMapping("{foodId}")
+    public void deleteFood(@PathVariable int foodId){
+        int userId = getCurrentUser().getId();
+        Food food = foodService.findById(foodId);
+        if(food != null){
+            if(food.getUser().getId() == userId){
+                foodService.removeById(food.getId());
+            }
+        }
     }
 
 }

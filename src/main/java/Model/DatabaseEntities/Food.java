@@ -4,13 +4,17 @@ import javax.persistence.*;
 
 @Entity
 public class Food {
+    //Food eaten by user
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer Id;
+    private Integer id;
 
     private String name;
     private int quantity;
     private int calories;
+
+    private long timestamp;
 
     @OneToOne
     private User user;
@@ -40,10 +44,26 @@ public class Food {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
