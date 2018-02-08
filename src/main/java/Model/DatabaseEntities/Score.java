@@ -7,7 +7,7 @@ import java.util.Date;
 public class Score {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer Id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -49,10 +49,10 @@ public class Score {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 }
