@@ -1,28 +1,26 @@
 package Model.DatabaseEntities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Friends {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer Id;
+    private Integer id;
 
     @OneToOne
     private User user;
 
     @OneToOne
-    private User[] friends;
+    private User friend;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public User getUser() {
@@ -33,11 +31,11 @@ public class Friends {
         this.user = user;
     }
 
-    public User[] getFriends() {
-        return friends;
+    public User getFriend() {
+        return friend;
     }
 
-    public void setFriends(User[] friends) {
-        this.friends = friends;
+    public void setFriend(User friend) {
+        this.friend = friend;
     }
 }
