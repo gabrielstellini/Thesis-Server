@@ -18,7 +18,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "ya29.GltYBUhpcX8f9iEX8ISdvQ__vEIDn1FkytIiBQ3GmI6dMmm3G2KI_5G1Cx7PTzkYZL4k4qvOLoJmcqdNRe1Hv1p9CN7NoI-mUHjwnq3JmF2aY9mzO81u8zegrByt",
+									"value": "ya29.GltYBYudQkCmfJHQwimvfIp2v2EO28ec17njVPR39408euBFrbruIfPMal6NBhDHT46CwArlZ64C97GGSEJc8rOCXbb42kAWhrbsBp7LzzLQ4MSwWyLlrhmx5sfN",
 									"type": "string"
 								},
 								{
@@ -33,7 +33,7 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {},
 						"url": {
@@ -55,11 +55,26 @@
 				{
 					"name": "Search",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBXLJinxIdEuVkDW9nCBVZfCV_Hso4W3kXMsuXIUNMDvmZToxCS0h4WRU3fPnSqPvEdPQzDDllkT-KU4eQBvgxPGTaPc7xoVxVHqLAgWdWEHK59qaBTohbc9D",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8181/user/search/aUser1",
+							"raw": "http://localhost:8181/user/search/Gabrielus Maltapark",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -68,7 +83,7 @@
 							"path": [
 								"user",
 								"search",
-								"aUser1"
+								"Gabrielus Maltapark"
 							]
 						},
 						"description": "Search for user (useful for adding a friend)"
@@ -78,11 +93,26 @@
 				{
 					"name": "Get user",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBXLJinxIdEuVkDW9nCBVZfCV_Hso4W3kXMsuXIUNMDvmZToxCS0h4WRU3fPnSqPvEdPQzDDllkT-KU4eQBvgxPGTaPc7xoVxVHqLAgWdWEHK59qaBTohbc9D",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8181/user/aUser2",
+							"raw": "http://localhost:8181/user/110057439948849991034",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -90,7 +120,7 @@
 							"port": "8181",
 							"path": [
 								"user",
-								"aUser2"
+								"110057439948849991034"
 							]
 						},
 						"description": "Get a specific user"
@@ -129,7 +159,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"test\",\n\t\"hasMedication\": true,\n\t\"hasFinancialPressure\": true,\n\t\"hasEmotionalSupport\": false,\n\t\"isMale\": false,\n\t\"dateOfBirth\":1517828449\n}"
+							"raw": "{\n  \"username\": \"test\",\n  \"hasMedication\": true,\n  \"hasFinancialPressure\": true,\n  \"hasEmotionalSupport\": false,\n  \"isMale\": false,\n  \"dateOfBirth\":1517828449\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8181/user/sign-up",
@@ -238,25 +268,8 @@
 					},
 					"response": [
 						{
-							"id": "b35d5754-ac4d-4db2-b2b5-73a9519cedf8",
+							"id": "5e5c8cba-392c-4899-b36b-b857214732e7",
 							"name": "GET user score",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:8181/score/110521304707277721967",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8181",
-									"path": [
-										"score",
-										"110521304707277721967"
-									]
-								}
-							},
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
@@ -324,7 +337,7 @@
 							],
 							"cookie": [
 								{
-									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
 									"httpOnly": false,
 									"domain": "localhost",
 									"path": "/",
@@ -333,7 +346,7 @@
 									"key": "XSRF-TOKEN"
 								},
 								{
-									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
 									"httpOnly": true,
 									"domain": "localhost",
 									"path": "/",
@@ -395,19 +408,28 @@
 					},
 					"response": [
 						{
-							"id": "e0c05ba2-bffe-48c2-9927-60316a3c1c5a",
+							"id": "184b0694-580e-4891-9dae-504ba51cce2f",
 							"name": "GET user score",
 							"originalRequest": {
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "text",
 							"header": [
 								{
 									"key": "Cache-Control",
@@ -472,7 +494,7 @@
 							],
 							"cookie": [
 								{
-									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
 									"httpOnly": false,
 									"domain": "localhost",
 									"path": "/",
@@ -481,7 +503,7 @@
 									"key": "XSRF-TOKEN"
 								},
 								{
-									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
 									"httpOnly": true,
 									"domain": "localhost",
 									"path": "/",
@@ -490,7 +512,1264 @@
 									"key": "JSESSIONID"
 								}
 							],
-							"responseTime": 108,
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				},
+				{
+					"name": "POST food",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"orange\",\n\t\"quantity\": 1,\n\t\"calories\": 200\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8181/food/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"food",
+								""
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "c585a23b-514c-48eb-8707-5bf24085b4d5",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				},
+				{
+					"name": "Delete food",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/food/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"food",
+								"1"
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "f1eeee47-f82e-48d3-888b-7e4d14b2cb72",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DataPoint",
+			"description": "",
+			"item": [
+				{
+					"name": "POST datapoint",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"heartRate\": 100,\n\t\"RRInterval\": 1.2,\n\t\"GSR\": 111.1,\n\t\"timestamp\": 1517882178\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8181/datapoint/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"datapoint",
+								""
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "80b409b2-9376-4464-ab3b-eef44003219c",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Preferences",
+			"description": "",
+			"item": [
+				{
+					"name": "GET preferences",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/user/preferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"user",
+								"preferences"
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "b86f143f-3a9a-4832-8c69-a1b891c73064",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				},
+				{
+					"name": "POST preference",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"startTime\": 2517800000,\n\t\"endTime\": 2517950500\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8181/user/preferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"user",
+								"preferences"
+							]
+						},
+						"description": "Gets details on a specific user"
+					},
+					"response": [
+						{
+							"id": "69013617-e9f7-4d4c-8a66-eca00eb8308c",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Friends",
+			"description": "",
+			"item": [
+				{
+					"name": "GET friends",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/friends",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"friends"
+							]
+						},
+						"description": "Gets friends as a string array"
+					},
+					"response": [
+						{
+							"id": "3b72d8c2-7002-433a-8222-8bc698826168",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				},
+				{
+					"name": "POST friends",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"startTime\": 2517800000,\n\t\"endTime\": 2517950500\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8181/user/preferences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"user",
+								"preferences"
+							]
+						},
+						"description": "Adds friends for a user"
+					},
+					"response": [
+						{
+							"id": "eff3b378-e295-4668-bef8-f40a9f996a2f",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
+							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
+						}
+					]
+				},
+				{
+					"name": "Delete friend",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.GltXBcPrzYv6uhogok9tfZAZ6Y22L3-zY-wtlmv05kxsfn9ojcUkFfk1dTjxp-EqaRvss4cEWTI5kXoXtBbAb8G5qK_WTj6R0rY8Gyc1hPUVKuf3GTL7nF32211g",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8181/friends/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"friends",
+								"1"
+							]
+						},
+						"description": "Remove friend\n"
+					},
+					"response": [
+						{
+							"id": "9a1d151d-ad92-46c6-aaee-fb3ecc432998",
+							"name": "GET user score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8181/score/110521304707277721967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"score",
+										"110521304707277721967"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2018 14:09:30 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Application-Context",
+									"value": "application:google:8181",
+									"name": "X-Application-Context",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "5ece823f-e10f-4f37-ac50-676213f0dbf6",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 04:14:07 GMT+0100 (W. Europe Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "8897DB9414F075952F571FC79C82C8DD",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": "108",
 							"body": "{\"user\":{\"username\":\"Gabriel Stellini\",\"email\":\"gabrielstellini@gmail.com\",\"googleId\":\"110521304707277721967\",\"picture\":\"https://lh5.googleusercontent.com/-cmg4r_aDtRg/AAAAAAAAAAI/AAAAAAAAFQE/0gBNz1H_Pyk/photo.jpg\"},\"scores\":[{\"date\":2147480048000,\"caloriesBurnt\":3000,\"points\":2000}]}"
 						}
 					]
