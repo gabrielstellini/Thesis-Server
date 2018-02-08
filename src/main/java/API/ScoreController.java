@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/score")
 public class ScoreController {
 
+    private final ScoreService scoreService;
+
     @Autowired
-    private ScoreService scoreService;
+    public ScoreController(ScoreService scoreService) {
+        this.scoreService = scoreService;
+    }
 
     @GetMapping("/{userId}")
     public UserScoreDTO getUserScore(@PathVariable String userId){

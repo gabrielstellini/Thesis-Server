@@ -6,15 +6,27 @@ import javax.persistence.*;
 public class DataPoint {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public Integer Id;
+    public Integer id;
 
     private int heartRate;
     private double RRInterval;
     private double GSR;
-    private int timestamp;
+    private long timestamp;
 
     @OneToOne
     private User user;
+
+    public DataPoint(){
+
+    }
+
+    public DataPoint(int heartRate, double RRInterval, double GSR, long timestamp, User user) {
+        this.heartRate = heartRate;
+        this.RRInterval = RRInterval;
+        this.GSR = GSR;
+        this.timestamp = timestamp;
+        this.user = user;
+    }
 
     public int getHeartRate() {
         return heartRate;
@@ -40,11 +52,11 @@ public class DataPoint {
         this.GSR = GSR;
     }
 
-    public int getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(int timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
