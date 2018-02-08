@@ -3,12 +3,23 @@
     /{username}             - GET, gets a specific user                                                 ✓
     /search/{username}      - GET, searches and returns all the usernames similar to the input          ✓
     /deprecated/allUsers    - returns all users, all details exposed                                    ✓
-    /preferences            - GET, get user preferences (preffered time)                                ✗
-                            - POST, update user preferences                                             ✗
+    /preferences            - GET, get user preferences (preffered time)                                ✓
+                            - POST, update user preferences                                             ✓
 /score
     /{username}             - GET, all scores for a user                                                ✓
 
-/datapoint                  - POST, adds a user specific datapoint                                      ✗
+/datapoint                  - POST, adds a user specific datapoint                                      ✓
 
-/food                       - POST, adds a food (user specific)                                         ✗
-                            - DELETE, removes a food                                                    ✗
+/food                       - GET, gets a food                                                          ✓
+                            - POST, adds a food (user specific)                                         ✓
+                            - DELETE, removes a food                                                    ✓
+
+/friend                     -GET, gets all friends                                                      ✓
+                            -POST, adds a friend                                                        ✓
+                            -DELETE, removes a friend                                                   ✓
+
+
+Vulnerabilities:
+-root password on database
+-connection to data (spring user)
+-Reliability on googleId instead of userId
