@@ -2,8 +2,8 @@ package Service;
 
 import Model.DatabaseEntities.Friends;
 import Model.DatabaseEntities.User;
-import Model.Repositories.FriendRepository;
-import Model.Repositories.UserRepository;
+import Repositories.FriendRepository;
+import Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

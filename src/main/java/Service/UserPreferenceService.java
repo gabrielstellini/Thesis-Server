@@ -2,7 +2,7 @@ package Service;
 
 import Model.DatabaseEntities.User;
 import Model.DatabaseEntities.UserPreference;
-import Model.Repositories.UserPreferenceRepository;
+import Repositories.UserPreferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

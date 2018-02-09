@@ -8,9 +8,9 @@ Continue research on Tokens ✓
 ------------------------------------------
 Writeup
 ------------------------------------------
-Add rest of APIs
 Switch to User PK instead of googleId
 Fix null checks - I can post random json to datapoint and it adds what it can.
+Rename DTO to Exchange
 ------------------------------------------
 Try algorithm
 

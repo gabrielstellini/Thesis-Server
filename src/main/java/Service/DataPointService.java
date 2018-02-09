@@ -2,8 +2,8 @@ package Service;
 
 import Model.DatabaseEntities.DataPoint;
 import Model.DatabaseEntities.User;
-import Model.Repositories.DataPointRepository;
-import Model.Repositories.UserRepository;
+import Repositories.DataPointRepository;
+import Repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

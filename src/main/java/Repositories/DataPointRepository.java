@@ -1,4 +1,4 @@
-package Model.Repositories;
+package Repositories;
 
 import Model.DatabaseEntities.DataPoint;
 import Model.DatabaseEntities.User;

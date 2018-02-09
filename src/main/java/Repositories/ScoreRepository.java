@@ -1,4 +1,4 @@
-package Model.Repositories;
+package Repositories;
 
 import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;

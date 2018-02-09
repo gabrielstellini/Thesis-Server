@@ -1,12 +1,9 @@
 package Service;
 
 import Model.DatabaseEntities.User;
-import Model.Repositories.UserRepository;
+import Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
