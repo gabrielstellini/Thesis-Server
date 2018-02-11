@@ -31,22 +31,26 @@ public class ScoreController {
         UserDTO userDTO = new UserDTO();
 
 
-        if(scores[0] != null){
+        if(scores != null && scores.length > 0){
             User user = scores[0].getUser();
             userDTO.toDto(user, userDTO);
+
+
+            ScoreDTO[] scoresDTO = new ScoreDTO[scores.length];
+
+            for (int i = 0; i < scores.length; i++) {
+                scoresDTO[i] = new ScoreDTO();
+                scoresDTO[i].toDto(scores[i], scoresDTO[i]);
+            }
+
+            userScoreDTO.setUser(userDTO);
+            userScoreDTO.setScores(scoresDTO);
+
+            return userScoreDTO;
+
+        }else {
+            return new UserScoreDTO();
         }
-
-        ScoreDTO[] scoresDTO = new ScoreDTO[scores.length];
-
-        for (int i = 0; i < scores.length; i++) {
-            scoresDTO[i] = new ScoreDTO();
-            scoresDTO[i].toDto(scores[i], scoresDTO[i]);
-        }
-
-        userScoreDTO.setUser(userDTO);
-        userScoreDTO.setScores(scoresDTO);
-
-        return userScoreDTO;
     }
 
 
