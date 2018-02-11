@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class FoodService {
     private final FoodRepository foodRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public FoodService(FoodRepository foodRepository, UserRepository userRepository){
+    public FoodService(FoodRepository foodRepository, UserService userService){
         this.foodRepository = foodRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Food[] findByGoogleId(String googleId){
-        User user = userRepository.findByGoogleId(googleId);
+        User user = userService.findByGoogleId(googleId);
         Food[] foods = foodRepository.findByUser(user);
         return foods;
     }

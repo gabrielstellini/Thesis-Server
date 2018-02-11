@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class DataPointService {
     private final DataPointRepository dataPointRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public DataPointService(DataPointRepository dataPointRepository, UserRepository userRepository) {
+    public DataPointService(DataPointRepository dataPointRepository, UserService userService) {
         this.dataPointRepository = dataPointRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
     public DataPoint[] findByGoogleId(String googleId){
-        User user = userRepository.findByGoogleId(googleId);
+        User user = userService.findByGoogleId(googleId);
         DataPoint[] dataPoints = dataPointRepository.findByUser(user);
         return dataPoints;
     }

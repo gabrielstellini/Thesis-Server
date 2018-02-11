@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = {"Model", "API","Service"})
-@EntityScan(basePackages = {"Model", "API", "Service"})
-@ComponentScan({"Model","API", "Service"})
+@EnableJpaRepositories(basePackages = {"Model", "API","Service","Repositories"})
+@EntityScan(basePackages = {"Model", "API", "Service", "Repositories"})
+@ComponentScan({"Model","API", "Service", "Repositories"})
 
 
 @SpringBootApplication

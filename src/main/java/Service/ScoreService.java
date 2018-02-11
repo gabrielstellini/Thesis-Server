@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScoreService {
     private final ScoreRepository scoreRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public ScoreService(ScoreRepository scoreRepository, UserRepository userRepository){
+    public ScoreService(ScoreRepository scoreRepository, UserService userService){
         this.scoreRepository = scoreRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Score[] findByGoogleId(String googleId){
-        User user = userRepository.findByGoogleId(googleId);
+        User user = userService.findByGoogleId(googleId);
         Score[] scores = scoreRepository.findByUser(user);
         return scores;
     }

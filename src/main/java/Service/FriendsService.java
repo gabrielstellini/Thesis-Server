@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 public class FriendsService {
 
     private final FriendRepository friendRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public FriendsService(FriendRepository friendRepository, UserRepository userRepository){
+    public FriendsService(FriendRepository friendRepository, UserService userService){
         this.friendRepository = friendRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Friends[] findByGoogleId(String googleId){
-        User user = userRepository.findByGoogleId(googleId);
+        User user = userService.findByGoogleId(googleId);
         Friends[] friends = friendRepository.findByUser(user);
         return friends;
     }
