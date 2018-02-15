@@ -1,5 +1,6 @@
 package API;
 
+import API.Auth.OAuthUserHandler;
 import Model.DTO.SignUpUserDTO;
 import Model.DTO.UserDTO;
 import Model.DTO.UserPreferenceDTO;
@@ -27,6 +28,13 @@ public class UserController extends MainController{
     public UserController(UserService userService, UserPreferenceService userPreferenceService) {
         this.userService = userService;
         this.userPreferenceService = userPreferenceService;
+    }
+
+    //TODO: implement as a method which runs on startup
+    @GetMapping("/")
+    public void userInitialisation(){
+        OAuthUserHandler oAuthUserHandler = new OAuthUserHandler(userService);
+        oAuthUserHandler.handleUser();
     }
 
     @PostMapping("/sign-up")
@@ -151,10 +159,7 @@ public class UserController extends MainController{
     @GetMapping("/deprecated/all")
     public User[] getAllUsers(){
         //TODO: Delete me (kept to check API is up)
-        return userService.findByUsernameIsContaining("");
+        User[] users = userService.findByUsernameIsContaining("");
+        return users;
     }
-
-
-
-
 }
