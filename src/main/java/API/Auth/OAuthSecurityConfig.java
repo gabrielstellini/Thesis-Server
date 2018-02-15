@@ -1,29 +1,36 @@
 package API.Auth;
 
 import Service.UserService;
+import com.auth0.spring.security.api.JwtWebSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import javax.servlet.Filter;
 
 import javax.servlet.Filter;
 
 /**
  * Modifying or overriding the default spring boot security.
  */
-@Configurable
-@EnableWebSecurity
+@Configuration
+@EnableWebSecurity(debug = true)
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value(value = "${auth0.apiAudience}")
+    private String apiAudience;
+    @Value(value = "${auth0.issuer}")
+    private String issuer;
+
 
     private OAuth2ClientContext oauth2ClientContext;
     private AuthorizationCodeResourceDetails authorizationCodeResourceDetails;
@@ -35,52 +42,12 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
         this.userService = userService;
     }
 
-    @Autowired
-    public void setOauth2ClientContext(OAuth2ClientContext oauth2ClientContext) {
-        this.oauth2ClientContext = oauth2ClientContext;
-    }
-
-    @Autowired
-    public void setAuthorizationCodeResourceDetails(AuthorizationCodeResourceDetails authorizationCodeResourceDetails) {
-        this.authorizationCodeResourceDetails = authorizationCodeResourceDetails;
-    }
-
-    @Autowired
-    public void setResourceServerProperties(ResourceServerProperties resourceServerProperties) {
-        this.resourceServerProperties = resourceServerProperties;
-    }
-
-    /* This method is for overriding the default AuthenticationManagerBuilder.
-     We can specify how the user details are kept in the application. It may
-     be in a database, LDAP or in memory.*/
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
-    }
-
-    /*
-     This method is for overriding some configuration of the WebSecurity
-     If you want to ignore some request or request patterns then you can
-     specify that inside this method.
-     */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-    }
-
-    /*
-    This method is used for override HttpSecurity of the web Application.
-    We can specify our authorization criteria inside this method.
-
-    Basically, this part handles login and logout
-    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                // Starts authorizing configurations.
+        JwtWebSecurityConfigurer
+                .forRS256(apiAudience, issuer)
+                .configure(http)
                 .authorizeRequests()
-                // Ignore the "/" and "/index.html"
                 .antMatchers("/", "/**.html", "/**.js").permitAll()
                 // Authenticate all remaining URLs.
                 .anyRequest().fullyAuthenticated()
@@ -92,7 +59,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 // Setting the filter for the URL "/google/login".
-                .addFilterAt(ssoFilter(), BasicAuthenticationFilter.class)
+//                .addFilterAt(ssoFilter(), BasicAuthenticationFilter.class)
                 .csrf().disable();
     }
 
@@ -115,4 +82,5 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return oAuth2Filter;
     }
+
 }
