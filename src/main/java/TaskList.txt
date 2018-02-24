@@ -6,11 +6,12 @@ Save into database ✓
 ------------------------------------------
 Continue research on Tokens ✓
 ------------------------------------------
-Writeup
+Writeup ✓
 ------------------------------------------
 Switch to User PK instead of googleId
 Fix null checks - I can post random json to datapoint and it adds what it can.
 Rename DTO to Exchange
+Check tokens sent by client (https://auth0.com/docs/api-auth/tutorials/verify-access-token)
 ------------------------------------------
 Try algorithm
 
