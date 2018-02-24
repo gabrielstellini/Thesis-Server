@@ -7,12 +7,12 @@ import java.sql.Time;
 
 public class UserPreferenceDTO extends EntityToDto<UserPreferenceDTO, UserPreference> {
     private int id;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
 
     public UserPreferenceDTO(){}
 
-    public UserPreferenceDTO(int id, Time startTime, Time endTime) {
+    public UserPreferenceDTO(int id, String startTime, String endTime) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -26,19 +26,19 @@ public class UserPreferenceDTO extends EntityToDto<UserPreferenceDTO, UserPrefer
         this.id = id;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 }

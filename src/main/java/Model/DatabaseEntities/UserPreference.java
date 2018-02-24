@@ -13,12 +13,12 @@ public class UserPreference {
     @OneToOne
     private User user;
 
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
 
     public UserPreference(){}
 
-    public UserPreference(User user, Time startTime, Time endTime) {
+    public UserPreference(User user, String startTime, String endTime) {
         this.user = user;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -40,19 +40,19 @@ public class UserPreference {
         this.user = user;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 }
