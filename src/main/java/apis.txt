@@ -5,6 +5,7 @@
     /deprecated/allUsers    - returns all users, all details exposed                                    ✓
     /preferences            - GET, get user preferences (preffered time)                                ✓
                             - POST, update user preferences                                             ✓
+    /score                  - GET, scores for user himself
 /score
     /{username}             - GET, all scores for a user                                                ✓
 

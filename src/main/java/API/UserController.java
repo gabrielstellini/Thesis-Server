@@ -1,11 +1,14 @@
 package API;
 
 import API.Auth.OAuthUserHandler;
+import Model.DTO.ScoreDTO;
 import Model.DTO.SignUpUserDTO;
 import Model.DTO.UserDTO;
 import Model.DTO.UserPreferenceDTO;
+import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;
 import Model.DatabaseEntities.UserPreference;
+import Service.ScoreService;
 import Service.UserPreferenceService;
 import Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 
 @RestController
 @RequestMapping("/user")
@@ -23,11 +25,13 @@ public class UserController extends MainController{
 
     private final UserService userService;
     private final UserPreferenceService userPreferenceService;
+    private final ScoreService scoreService;
 
     @Autowired
-    public UserController(UserService userService, UserPreferenceService userPreferenceService) {
+    public UserController(UserService userService, UserPreferenceService userPreferenceService, ScoreService scoreService) {
         this.userService = userService;
         this.userPreferenceService = userPreferenceService;
+        this.scoreService = scoreService;
     }
 
     //TODO: moved to sign-up
@@ -171,5 +175,19 @@ public class UserController extends MainController{
         //TODO: Delete me (kept to check API is up)
         User[] users = userService.findByUsernameIsContaining("");
         return users;
+    }
+
+    @GetMapping("/score")
+    public ScoreDTO[] getPersonalScores(){
+        User user = getCurrentUser();
+        Score[] scores = scoreService.findByGoogleId(user.getGoogleId());
+        ScoreDTO[] scoreDTO = new ScoreDTO[scores.length];
+
+        for (int i = 0; i < scores.length; i++) {
+            scoreDTO[i] =  new ScoreDTO();
+            scoreDTO[i].toDto(scores[i], scoreDTO[i]);
+        }
+
+        return scoreDTO;
     }
 }
