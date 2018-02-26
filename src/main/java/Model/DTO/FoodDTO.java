@@ -8,6 +8,7 @@ public class FoodDTO extends EntityToDto<FoodDTO, Food> {
     private String name;
     private int quantity;
     private int calories;
+    private long timestamp;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class FoodDTO extends EntityToDto<FoodDTO, Food> {
 
     public void setId(Integer id) {
         Id = id;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
