@@ -1,7 +1,6 @@
 package Model.DatabaseEntities;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Score {
@@ -12,24 +11,16 @@ public class Score {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    private Date date;
-    private int Points;
+    private long timestamp;
+    private int points;
     private int caloriesBurnt;
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public int getPoints() {
-        return Points;
+        return points;
     }
 
     public void setPoints(int points) {
-        Points = points;
+        this.points = points;
     }
 
     public int getCaloriesBurnt() {
@@ -54,5 +45,13 @@ public class Score {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
