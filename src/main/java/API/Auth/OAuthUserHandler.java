@@ -28,7 +28,7 @@ public class OAuthUserHandler {
         AuthenticationJsonWebToken basicDetails = ((AuthenticationJsonWebToken) authentication);
 
         String oauthId = basicDetails.getName();
-        boolean foundUser = userService.existsByGoogleId(oauthId)
+        boolean foundUser = userService.existsByGoogleId(oauthId);
         System.out.println("Database found user: " + foundUser);
 
         if(!foundUser) {
