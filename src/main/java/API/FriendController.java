@@ -24,18 +24,17 @@ public class FriendController extends MainController {
 
 
     @GetMapping("")
-    public FriendsDTO[] getFriends(){
+    public FriendsDTO getFriends(){
         String googleId = getCurrentUser().getGoogleId();
 
         Friends[] friends = friendService.findByGoogleId(googleId);
-        FriendsDTO[] FriendsDTOS = new FriendsDTO[friends.length];
+        FriendsDTO friendsDTO = new FriendsDTO();
 
-        for (int i = 0; i < friends.length; i++) {
-            FriendsDTOS[i] = new FriendsDTO();
-            FriendsDTOS[i].toDto(friends);
-        }
 
-        return FriendsDTOS;
+        friendsDTO.toDto(friends);
+
+
+        return friendsDTO;
     }
 
     @PostMapping("")
