@@ -6,6 +6,7 @@ import Model.DTO.UserScoreDTO;
 import Model.DatabaseEntities.Score;
 import Model.DatabaseEntities.User;
 import Service.ScoreService;
+import Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ScoreController {
 
     private final ScoreService scoreService;
+    private final UserService userService;
 
     @Autowired
-    public ScoreController(ScoreService scoreService) {
+    public ScoreController(ScoreService scoreService, UserService userService) {
         this.scoreService = scoreService;
+        this.userService = userService;
     }
 
     @GetMapping("/{userId}")
@@ -49,7 +52,19 @@ public class ScoreController {
             return userScoreDTO;
 
         }else {
-            return new UserScoreDTO();
+//            Return score of 0
+            userDTO.toDto(userService.findByGoogleId(userId), userDTO);
+            Score score = new Score();
+
+            score.setPoints(0);
+            score.setTimestamp(System.currentTimeMillis());
+
+            ScoreDTO scoreDTO = new ScoreDTO();
+            scoreDTO.toDto(score, scoreDTO);
+
+            userScoreDTO.setUser(userDTO);
+            userScoreDTO.setScores(new ScoreDTO[]{scoreDTO});
+            return userScoreDTO;
         }
     }
 
