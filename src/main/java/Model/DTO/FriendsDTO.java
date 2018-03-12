@@ -8,7 +8,7 @@ public class FriendsDTO {
     public void toDto(Friends[] friends) {
         this.friends = new String[friends.length];
         for (int i = 0; i < friends.length; i++) {
-            this.friends[i] = friends[i].getUser().getGoogleId();
+            this.friends[i] = friends[i].getFriend().getGoogleId();
         }
     }
 
