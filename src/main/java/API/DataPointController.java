@@ -14,8 +14,6 @@ import java.sql.Timestamp;
 public class DataPointController extends MainController {
 
     private final DataPointService dataPointService;
-
-
     public DataPointController(DataPointService dataPointService) {
         this.dataPointService = dataPointService;
     }
@@ -31,16 +29,16 @@ public class DataPointController extends MainController {
             dataPointDTOS[i] = new DataPointDTO();
             dataPointDTOS[i].toDto(dataPoints[i], dataPointDTOS[i]);
         }
-
         return dataPoints;
-
     }
 
     @PostMapping("")
-    public void addDataPoint(@RequestBody @NotNull DataPointDTO dp){
+    public void addDataPoint(@RequestBody @NotNull DataPointDTO[] dataPoints){
         User user = getCurrentUser();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        DataPoint dataPoint = new DataPoint(dp.getHeartRate(),dp.getRRInterval(), dp.getGSR(), timestamp.getTime(), user);
-        dataPointService.save(dataPoint);
+        for (DataPointDTO dp: dataPoints) {
+                DataPoint dataPoint = new DataPoint(dp.getHeartRate(),dp.getRrInterval(), dp.getGsr(), dp.getTimestamp(), user);
+                dataPointService.save(dataPoint);
+            }
+//        }
     }
 }
