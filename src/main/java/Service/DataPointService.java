@@ -3,7 +3,6 @@ package Service;
 import Model.DatabaseEntities.DataPoint;
 import Model.DatabaseEntities.User;
 import Repositories.DataPointRepository;
-import Repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,4 +29,6 @@ public class DataPointService {
     public DataPoint findById(Integer id){
         return dataPointRepository.findById(id);
     }
+
+    public DataPoint[] findByDataPointMetaDataId(Integer id){return  dataPointRepository.findByDataPointMetaDataId(id);}
 }

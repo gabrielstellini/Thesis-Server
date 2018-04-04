@@ -1,21 +1,26 @@
 package API;
 
+import Controller.StressEngine.GSRStressEngine;
 import Model.DTO.DataPointDTO;
 import Model.DatabaseEntities.DataPoint;
+import Model.DatabaseEntities.DataPointMetaData;
 import Model.DatabaseEntities.User;
+import Service.DataPointMetaService;
 import Service.DataPointService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/datapoint")
 public class DataPointController extends MainController {
 
     private final DataPointService dataPointService;
-    public DataPointController(DataPointService dataPointService) {
+    private final DataPointMetaService dataPointMetaService;
+
+    public DataPointController(DataPointService dataPointService, DataPointMetaService dataPointMetaService) {
         this.dataPointService = dataPointService;
+        this.dataPointMetaService = dataPointMetaService;
     }
 
     @GetMapping("")
@@ -33,12 +38,53 @@ public class DataPointController extends MainController {
     }
 
     @PostMapping("")
-    public void addDataPoint(@RequestBody @NotNull DataPointDTO[] dataPoints){
+    public void addDataPoints(@RequestBody DataPointDTO[] dataPoints){
+        DataPointMetaData metaData= new DataPointMetaData();
+        metaData.setBaseline(false);
+        metaData.setStressStatus(2);
+        metaData.setUser(getCurrentUser());
+
+        dataPointMetaService.save(metaData);
+
+
         User user = getCurrentUser();
         for (DataPointDTO dp: dataPoints) {
-                DataPoint dataPoint = new DataPoint(dp.getHeartRate(),dp.getRrInterval(), dp.getGsr(), dp.getTimestamp(), user);
+            try{
+                DataPoint dataPoint = new DataPoint(dp.getHeartRate(), dp.getRrInterval(), dp.getGsr(), dp.getTimestamp(), user, dp.getQuality(), dp.getContactStatus(), metaData);
                 dataPointService.save(dataPoint);
+            }catch (NullPointerException e){
+                System.out.println("HERE");
             }
-//        }
+        }
+
+        GSRStressEngine gsrStressEngine = new GSRStressEngine(dataPointService, dataPointMetaService);
+        gsrStressEngine.checkIfStressedGSR();
+
+    }
+
+
+    @PostMapping("/calm")
+    public void addCalmDataPoints(@RequestBody @NotNull DataPointDTO[] dataPointDtos){
+        DataPointMetaData metaData= new DataPointMetaData();
+        metaData.setBaseline(true);
+        metaData.setStressStatus(0);
+        metaData.setUser(getCurrentUser());
+
+        dataPointMetaService.save(metaData);
+
+        User user = getCurrentUser();
+
+        DataPoint[] dataPoints = new DataPoint[dataPointDtos.length];
+
+
+        for (int i = 0; i < dataPointDtos.length; i++) {
+            try{
+                DataPointDTO dp = dataPointDtos[i];
+                dataPoints[i] = new DataPoint(dp.getHeartRate(), dp.getRrInterval(), dp.getGsr(), dp.getTimestamp(), user, dp.getQuality(), dp.getContactStatus(), metaData);
+                dataPointService.save(dataPoints[i]);
+            }catch (NullPointerException e){
+                System.out.println("HERE");
+            }
+        }
     }
 }

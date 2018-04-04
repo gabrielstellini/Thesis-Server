@@ -13,19 +13,27 @@ public class DataPoint {
     private double GSR;
     private long timestamp;
 
+    private String quality;
+    private String contactStatus;
+
+    @OneToOne
+    private DataPointMetaData dataPointMetaData;
+
     @OneToOne
     private User user;
 
     public DataPoint(){
-
     }
 
-    public DataPoint(int heartRate, double RRInterval, double GSR, long timestamp, User user) {
+    public DataPoint(int heartRate, double RRInterval, double GSR, long timestamp, User user, String quality, String contactStatus, DataPointMetaData dataPointMetaData) {
         this.heartRate = heartRate;
         this.RRInterval = RRInterval;
         this.GSR = GSR;
         this.timestamp = timestamp;
         this.user = user;
+        this.quality = quality;
+        this.contactStatus = contactStatus;
+        this.dataPointMetaData = dataPointMetaData;
     }
 
     public int getHeartRate() {
@@ -67,5 +75,29 @@ public class DataPoint {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public String getContactStatus() {
+        return contactStatus;
+    }
+
+    public void setContactStatus(String contactStatus) {
+        this.contactStatus = contactStatus;
+    }
+
+    public DataPointMetaData getDataPointMetaData() {
+        return dataPointMetaData;
+    }
+
+    public void setDataPointMetaData(DataPointMetaData dataPointMetaData) {
+        this.dataPointMetaData = dataPointMetaData;
     }
 }

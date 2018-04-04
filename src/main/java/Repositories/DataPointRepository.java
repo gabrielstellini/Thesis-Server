@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface DataPointRepository extends CrudRepository<DataPoint, Long> {
     DataPoint[] findByUser(User user);
     DataPoint findById(Integer id);
+    DataPoint[] findByDataPointMetaDataId(Integer id);
 }
