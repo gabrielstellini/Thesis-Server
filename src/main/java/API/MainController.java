@@ -15,7 +15,6 @@ public abstract class MainController {
     UserService userService;
 
     User getCurrentUser() {
-
         //TODO: verify token - https://auth0.com/docs/api-auth/tutorials/verify-access-token
         Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();
         AuthenticationJsonWebToken authenticationJsonWebToken = (AuthenticationJsonWebToken) authentication;
