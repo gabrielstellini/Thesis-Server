@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/food")
@@ -48,8 +47,6 @@ public class FoodController extends MainController{
         food.setQuantity(foodDto.getQuantity());
         food.setUser(getCurrentUser());
         food.setTimestamp(timestamp.getTime());
-
-        //TODO: calculate stress
 
         foodService.save(food);
     }
