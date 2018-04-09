@@ -20,7 +20,6 @@ public class ScoreService {
 
     public Score[] findByGoogleId(String googleId){
         User user = userService.findByGoogleId(googleId);
-        Score[] scores = scoreRepository.findByUser(user);
-        return scores;
+        return scoreRepository.findByUser(user);
     }
 }
