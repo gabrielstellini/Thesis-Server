@@ -51,7 +51,7 @@ public class RRStressEngine extends Engine{
     private boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
         double calmStressMetric = standardDeviation(calmStressData, 2);
         double unknownStressMetric = standardDeviation(unknownStress, 2);
-        System.out.print("Calm: " + calmStressMetric + " Stressed: " + unknownStressMetric + " ");
+        System.out.print("RR Calm: " + calmStressMetric + " Stressed: " + unknownStressMetric + " ");
         return calmStressMetric < unknownStressMetric;
     }
 
