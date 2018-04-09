@@ -22,4 +22,8 @@ public class ScoreService {
         User user = userService.findByGoogleId(googleId);
         return scoreRepository.findByUser(user);
     }
+
+    public void save(Score score){
+        scoreRepository.save(score);
+    }
 }
