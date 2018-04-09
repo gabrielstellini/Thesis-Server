@@ -1,12 +1,12 @@
 package API;
 
+import Controller.ScoreEngine;
 import Controller.StressEngine.GSRStressEngine;
 import Model.DTO.DataPointDTO;
 import Model.DatabaseEntities.DataPoint;
 import Model.DatabaseEntities.DataPointMetaData;
 import Model.DatabaseEntities.User;
-import Service.DataPointMetaService;
-import Service.DataPointService;
+import Service.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
@@ -17,10 +17,17 @@ public class DataPointController extends MainController {
 
     private final DataPointService dataPointService;
     private final DataPointMetaService dataPointMetaService;
+    private ScoreEngine scoreEngine;
 
-    public DataPointController(DataPointService dataPointService, DataPointMetaService dataPointMetaService) {
+    public DataPointController(  DataPointService dataPointService,
+                                 DataPointMetaService dataPointMetaService,
+                                 ScoreService scoreService,
+                                 FoodService foodService,
+                                 UserService userService,
+                                 UserPreferenceService userPreferenceService) {
         this.dataPointService = dataPointService;
         this.dataPointMetaService = dataPointMetaService;
+        scoreEngine = new ScoreEngine(dataPointService, dataPointMetaService,  scoreService, foodService, userService, userPreferenceService);
     }
 
     @GetMapping("")
@@ -43,6 +50,7 @@ public class DataPointController extends MainController {
         metaData.setBaseline(false);
         metaData.setStressStatus(2);
         metaData.setUser(getCurrentUser());
+        metaData.setTimestamp(System.currentTimeMillis());
 
         dataPointMetaService.save(metaData);
 
@@ -56,10 +64,7 @@ public class DataPointController extends MainController {
                 System.out.println("HERE");
             }
         }
-
-        GSRStressEngine gsrStressEngine = new GSRStressEngine(dataPointService, dataPointMetaService);
-        gsrStressEngine.checkIfStressedGSR();
-
+        scoreEngine.calculateScore();
     }
 
 
@@ -69,6 +74,7 @@ public class DataPointController extends MainController {
         metaData.setBaseline(true);
         metaData.setStressStatus(0);
         metaData.setUser(getCurrentUser());
+        metaData.setTimestamp(System.currentTimeMillis());
 
         dataPointMetaService.save(metaData);
 

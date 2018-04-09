@@ -17,6 +17,7 @@ public class DataPointMetaData {
 
     private int stressStatus;
     private boolean isBaseline;
+    private long timestamp;
 
     public boolean isBaseline() {
         return isBaseline;
@@ -40,5 +41,13 @@ public class DataPointMetaData {
 
     public void setStressStatus(int stressStatus) {
         this.stressStatus = stressStatus;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
