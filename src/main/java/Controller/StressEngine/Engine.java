@@ -46,7 +46,7 @@ public abstract class Engine {
 
     void cleanData(List<DataPoint> data) {
         // Remove the current element from the iterator and the list.
-        data.removeIf(dataPoint -> dataPoint.getQuality().equals("LOCKED") || !dataPoint.getContactStatus().equals("WORN"));
+        data.removeIf(dataPoint -> !dataPoint.getQuality().equals("LOCKED") || !dataPoint.getContactStatus().equals("WORN"));
     }
 
     void showBarChart(String name, double[] dataset, int[] time){
@@ -96,6 +96,8 @@ public abstract class Engine {
         dataPoints = cleanData(dataPoints);
         return Arrays.asList(dataPoints);
     }
+
+
 
     //calculates standard deviation of first point after the
     double standardDeviation(double[] numbers, int iterations){
