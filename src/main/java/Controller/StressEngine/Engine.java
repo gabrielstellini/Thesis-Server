@@ -13,16 +13,15 @@ import org.jfree.ui.RefineryUtilities;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Engine {
 
-    DataPointService dataPointService;
-    DataPointMetaService dataPointMetaService;
+    private DataPointService dataPointService;
+    private DataPointMetaService dataPointMetaService;
 
-    public Engine(DataPointService dataPointService, DataPointMetaService dataPointMetaService){
+    Engine(DataPointService dataPointService, DataPointMetaService dataPointMetaService){
         this.dataPointService = dataPointService;
         this.dataPointMetaService = dataPointMetaService;
     }
@@ -38,37 +37,37 @@ public abstract class Engine {
         scatterChart.setVisible(true);
     }
 
-    protected DataPoint[] cleanData(DataPoint[] data) {
+    private DataPoint[] cleanData(DataPoint[] data) {
         // Remove the current element from the iterator and the list.
         List<DataPoint> dataAsList = new java.util.ArrayList<>(Arrays.asList(data));
         dataAsList.removeIf(dataPoint -> !dataPoint.getQuality().equals("LOCKED") || !dataPoint.getContactStatus().equals("WORN"));
         return dataAsList.toArray(new DataPoint[dataAsList.size()]);
     }
 
-    protected void cleanData(List<DataPoint> data) {
+    void cleanData(List<DataPoint> data) {
         // Remove the current element from the iterator and the list.
         data.removeIf(dataPoint -> dataPoint.getQuality().equals("LOCKED") || !dataPoint.getContactStatus().equals("WORN"));
     }
 
-    protected void showBarChart(String name, double[] dataset, int[] time ){
+    void showBarChart(String name, double[] dataset, int[] time){
         BarChart demo = new BarChart(name, dataset, time);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
     }
 
-    protected void showBarChart(String name, double[] dataset1, double[] dataset2){
+    void showBarChart(String name, double[] dataset1, double[] dataset2){
         BarChart demo = new BarChart(name, dataset1, dataset2);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
     }
 
-    protected List<DataPoint> getBaselineData(){
+    List<DataPoint> getBaselineData(){
         return getData(DataPointType.BASELINE);
     }
 
-    protected List<DataPoint> getUnprocessedData(){
+    List<DataPoint> getUnprocessedData(){
         return getData(DataPointType.UNPROCESSED);
     }
 
@@ -99,7 +98,7 @@ public abstract class Engine {
     }
 
     //calculates standard deviation of first point after the
-    protected double standardDeviation(double[] numbers, int iterations){
+    double standardDeviation(double[] numbers, int iterations){
 
         double mean = 0.0;
         double stdDeviation = 0;
