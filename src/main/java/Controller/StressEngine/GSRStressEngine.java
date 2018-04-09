@@ -36,9 +36,9 @@ public class GSRStressEngine extends Engine{
             sigma = 1;
         }
 
-        List<Double> normScoredDocs = new ArrayList<Double>(dataPoints.size());
-        for (int i = 0; i < dataPoints.size(); i++) {
-            Double aDouble = (dataPoints.get(i).getGSR() - mu) / sigma;
+        List<Double> normScoredDocs = new ArrayList<>(dataPoints.size());
+        for (DataPoint dataPoint : dataPoints) {
+            Double aDouble = (dataPoint.getGSR() - mu) / sigma;
             normScoredDocs.add(aDouble);
         }
 
@@ -72,7 +72,7 @@ public class GSRStressEngine extends Engine{
         }
     }
 
-    public boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
+    private boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
         double calmStressMetric = standardDeviation(calmStressData, 2);
         double unknownStressMetric = standardDeviation(unknownStress, 2);
         System.out.print("Calm: " + calmStressMetric + " Stressed: " + unknownStressMetric + " ");

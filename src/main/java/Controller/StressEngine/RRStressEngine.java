@@ -34,7 +34,7 @@ public class RRStressEngine extends Engine{
         LinkedList<Double> RRs = new LinkedList<>();
 
         for (DataPoint dp: dataPointList) {
-            RRs.add((double)dp.getRRInterval());
+            RRs.add(dp.getRRInterval());
         }
 
 
@@ -48,7 +48,7 @@ public class RRStressEngine extends Engine{
         return RRsAsArr;
     }
 
-    public boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
+    private boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
         double calmStressMetric = standardDeviation(calmStressData, 2);
         double unknownStressMetric = standardDeviation(unknownStress, 2);
         System.out.print("Calm: " + calmStressMetric + " Stressed: " + unknownStressMetric + " ");
@@ -57,7 +57,7 @@ public class RRStressEngine extends Engine{
 
 
 
-    public boolean isStressed(double[] calmStressMetric, double[] unknownStressMetric){
+    private boolean isStressed(double[] calmStressMetric, double[] unknownStressMetric){
         return standardDeviationStressCalc(calmStressMetric, unknownStressMetric);
 //        return true;
 //        return isStressed(calculateStressMetric(calmStressMetric), calculateStressMetric(unknownStressMetric));
