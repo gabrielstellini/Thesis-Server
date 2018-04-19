@@ -35,7 +35,6 @@ public class UserService {
     }
 
     public void save(User user){
-        //TODO: more robust checks for whether a user is valid
         if(user.getUsername() != null && user.getGoogleId() != null) {
             userRepository.save(user);
         }

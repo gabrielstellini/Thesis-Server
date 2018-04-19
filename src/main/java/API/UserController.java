@@ -34,7 +34,6 @@ public class UserController extends MainController{
         this.scoreService = scoreService;
     }
 
-    //TODO: moved to sign-up
     @GetMapping("/")
     public SignUpUserDTO userInitialisation(){
         OAuthUserHandler oAuthUserHandler = new OAuthUserHandler(userService);
@@ -61,8 +60,6 @@ public class UserController extends MainController{
 
 
         userService.save(user);
-        //TODO: add checks to make sure user was updated
-        //TODO: add support for dateOfBirth
         return ResponseEntity.ok("{}");
     }
 
@@ -106,52 +103,14 @@ public class UserController extends MainController{
     @PostMapping("/preferences")
     public ResponseEntity addPreference(@RequestBody @NotNull UserPreferenceDTO userPreferenceDTO ) {
         User user = getCurrentUser();
-        //TODO: re-add validation using Time(hour, minute). Format recieved is in "10:30" structure
-//        if (userPreferenceDTO.getStartTime().before(userPreferenceDTO.getEndTime())) {
-//            UserPreference[] savedUserPreferences = userPreferenceService.findAllByUser(user);
-//
-//            boolean valid = true;
-//
-//            Time startDate2 = userPreferenceDTO.getStartTime();
-//            Time endDate2 = userPreferenceDTO.getEndTime();
-//
-//            //check for overlap
-//            for (UserPreference userPreference : savedUserPreferences) {
-//                Time startDate1 = userPreference.getStartTime();
-//                Time endDate1 = userPreference.getEndTime();
-//                //!(StartDate1 <= EndDate2) and (StartDate2 <= EndDate1){
-//                if (
-//                        (startDate1.before(endDate2) || startDate1.equals(endDate2)) &&
-//                                (startDate2.before(endDate1) || startDate2.equals(endDate1))
-//                        ) {
-//                    valid = false;
-//                }
-//            }
-//
-//            //check there is a minimum of 1min delay
-//            long timeDifference = userPreferenceDTO.getEndTime().getTime() - userPreferenceDTO.getStartTime().getTime();
-//            if(timeDifference<60000){
-//                valid = false;
-//            }
-//
-//
-//            if (valid) {
-                UserPreference userPreference = new UserPreference();
+        UserPreference userPreference = new UserPreference();
 
-                userPreference.setStartTime(userPreferenceDTO.getStartTime());
-                userPreference.setEndTime(userPreferenceDTO.getEndTime());
-                userPreference.setUser(user);
+        userPreference.setStartTime(userPreferenceDTO.getStartTime());
+        userPreference.setEndTime(userPreferenceDTO.getEndTime());
+        userPreference.setUser(user);
 
-                userPreferenceService.save(userPreference);
-                return ResponseEntity.ok("{}");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'ERROR': 'Time overlaps or <1min!'}");
-//            }
-
-
-//        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{'ERROR': 'Start is before end!'}");
-//        }
+        userPreferenceService.save(userPreference);
+        return ResponseEntity.ok("{}");
     }
 
 
@@ -168,13 +127,6 @@ public class UserController extends MainController{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Unauthorised to edit other user's" +
                     " preferences or does not exist");
         }
-    }
-
-    @GetMapping("/deprecated/all")
-    public User[] getAllUsers(){
-        //TODO: Delete me (kept to check API is up)
-        User[] users = userService.findByUsernameIsContaining("");
-        return users;
     }
 
     @GetMapping("/score")
