@@ -19,6 +19,12 @@ public class HRStressEngine extends Engine{
         return currMax;
     }
 
+    /**
+     * Deprecated simple stress calculator which compares +10% of calm to the unknown data set
+     * @param calmStressMetric
+     * @param unknownStressMetric
+     * @return
+     */
     public boolean simpleStressCalc(double calmStressMetric, double unknownStressMetric){
         double upperboundStressMetric = calmStressMetric * 110 /100;
 
@@ -28,6 +34,12 @@ public class HRStressEngine extends Engine{
         return true;
     }
 
+    /**
+     * Deprecated as RR is more accurate (accuracy of 66%) and both are RR and BPM based on the heart
+     * Performs FFT on heart rate
+     * @param dataPointList
+     * @return
+     */
     private double[] doHRFFT(List<DataPoint> dataPointList){
         //convert to the correct type
 

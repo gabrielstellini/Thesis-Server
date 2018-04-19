@@ -26,7 +26,12 @@ public abstract class Engine {
         this.dataPointMetaService = dataPointMetaService;
     }
 
-    public void showRRScatterChart(String chartName, String fileLocation, List<DataPoint> dataPointList){
+    /***
+     * Shows scatter chart with requested data points
+     * @param chartName chart title
+     * @param dataPointList data
+     */
+    public void showRRScatterChart(String chartName, List<DataPoint> dataPointList){
         //shows chart using data in file
         cleanData(dataPointList);
         double[] RRsAsArr = dataPointList.stream().map(DataPoint::getRRInterval).mapToDouble(i->i).toArray();
@@ -37,6 +42,10 @@ public abstract class Engine {
         scatterChart.setVisible(true);
     }
 
+    /***
+     * Removes datapoints which are not valid in a different array
+     * @param data noisy data
+     */
     private DataPoint[] cleanData(DataPoint[] data) {
         // Remove the current element from the iterator and the list.
         List<DataPoint> dataAsList = new java.util.ArrayList<>(Arrays.asList(data));
@@ -44,11 +53,21 @@ public abstract class Engine {
         return dataAsList.toArray(new DataPoint[dataAsList.size()]);
     }
 
+    /***
+     * Removes datapoints which are not valid in the same array
+     * @param data noisy data
+     */
     void cleanData(List<DataPoint> data) {
         // Remove the current element from the iterator and the list.
         data.removeIf(dataPoint -> !dataPoint.getQuality().equals("LOCKED") || !dataPoint.getContactStatus().equals("WORN"));
     }
 
+    /**
+     * Shows one bar chart
+     * @param name name of chart
+     * @param dataset y axis data
+     * @param time x axis data
+     */
     void showBarChart(String name, double[] dataset, int[] time){
         BarChart demo = new BarChart(name, dataset, time);
         demo.pack();
@@ -56,6 +75,12 @@ public abstract class Engine {
         demo.setVisible(true);
     }
 
+    /**
+     * Shows bar chart with 2 datasets
+     * @param name of chart
+     * @param dataset1 data set to be shown on the left
+     * @param dataset2 data set to be shown on the right
+     */
     void showBarChart(String name, double[] dataset1, double[] dataset2){
         BarChart demo = new BarChart(name, dataset1, dataset2);
         demo.pack();
@@ -71,11 +96,15 @@ public abstract class Engine {
         return getData(DataPointType.UNPROCESSED);
     }
 
+    /**
+     * Retrieves datapoints for a user
+     * @param dataPointType type of datapoint requested (STRESSED, CALM, UNPROCESSED, BASELINE)
+     * @return datapoints which fall under the datapointType category
+     */
     private List<DataPoint> getData(DataPointType dataPointType){
-        //Current user
+        //Get current user
         Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();
         AuthenticationJsonWebToken authenticationJsonWebToken = (AuthenticationJsonWebToken) authentication;
-
         String oauthId = authenticationJsonWebToken.getName();
 
         DataPointMetaData[] dataPointMetaDatas = dataPointMetaService.findByGoogleId(oauthId);
@@ -98,10 +127,13 @@ public abstract class Engine {
     }
 
 
-
-    //calculates standard deviation of first point after the
+    /**
+     * calculates standard deviation of the specified number of points
+     * @param numbers standard deviation calculated
+     * @param iterations number of datapoints to take into consideration
+     * @return overall standard deviation
+     */
     double standardDeviation(double[] numbers, int iterations){
-
         double mean = 0.0;
         double stdDeviation = 0;
 
@@ -118,5 +150,4 @@ public abstract class Engine {
         stdDeviation /= iterations;
         return Math.sqrt(stdDeviation);
     }
-
 }

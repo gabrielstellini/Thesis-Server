@@ -16,6 +16,12 @@ public class GSRStressEngine extends Engine{
         super(dataPointService, dataPointMetaService);
     }
 
+    /**
+     * Used to return points passed through zScore and FFT
+     * Deprecated as FFT on it's own was more effective
+     * @param dataPoints input data from band
+     * @return result
+     */
     private double[] zScoreFFT(List<DataPoint> dataPoints){
         double mu = 0;
         double temp = 0;
@@ -48,23 +54,40 @@ public class GSRStressEngine extends Engine{
         return normalisedDataArr;
     }
 
-    public void showGSR(List<DataPoint> dataPoints, String title){
-        showBarChart(title + "normalised", zScoreFFT(dataPoints), IntStream.range(0, dataPoints.size()).toArray());
-//        showBarChart(title + "Raw GSR", dataPoints.stream().mapToDouble(DataPoint::getGSR).toArray(), IntStream.range(0, dataPoints.size()).toArray());
+    /**
+     * Passes data points through FFT
+     * @param dataPoints input data from band
+     * @return datapoint values
+     */
+    private double[] scoreFFT(List<DataPoint> dataPoints){
+        List<Double> normScoredDocs = new ArrayList<>(dataPoints.size());
+        for (DataPoint dataPoint : dataPoints) {
+            double aDouble = dataPoint.getGSR();
+            normScoredDocs.add(aDouble);
+        }
+
+        double[] normalisedDataArr = normScoredDocs.stream().mapToDouble(d -> d).toArray();
+        DoubleFFT_1D doubleFFT_1D = new DoubleFFT_1D(normalisedDataArr.length -1);
+        doubleFFT_1D.realForward(normalisedDataArr);
+        return normalisedDataArr;
     }
 
+    public void showGSR(List<DataPoint> dataPoints, String title){
+        showBarChart(title, scoreFFT(dataPoints), IntStream.range(0, dataPoints.size()).toArray());
+    }
 
+    /**
+     * Compares 2 sets of data points for a user - one which was used for calibration and the unclassified set
+     * @return true when unknown is larger than calm data points
+     */
     public boolean checkIfStressedGSR(){
-
         List<DataPoint> calmDataPoints = getBaselineData();
         List<DataPoint> unknownDataPoints = getUnprocessedData();
 
         if(calmDataPoints.size() >= 1 && unknownDataPoints.size() >= 1 ){
-            double[] fftCalmDataPoints = zScoreFFT(calmDataPoints);
-            double[] fftUnknownDataPoints = zScoreFFT(unknownDataPoints);
-
+            double[] fftCalmDataPoints = scoreFFT(calmDataPoints);
+            double[] fftUnknownDataPoints = scoreFFT(unknownDataPoints);
             boolean result = standardDeviationStressCalc(fftCalmDataPoints, fftUnknownDataPoints);
-
             System.out.println(result);
             return result;
         }else {
@@ -72,6 +95,12 @@ public class GSRStressEngine extends Engine{
         }
     }
 
+    /**
+     *
+     * @param calmStressData
+     * @param unknownStress
+     * @return
+     */
     private boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
         double calmStressMetric = standardDeviation(calmStressData, 2);
         double unknownStressMetric = standardDeviation(unknownStress, 2);

@@ -49,15 +49,14 @@ public class BarChart extends ApplicationFrame {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
-
-//        chartPanel.setFillZoomRectangle(true);
-//        chartPanel.setRangeZoomable(true);
-//        chartPanel.setDomainZoomable(true);
-//        chartPanel.setMouseWheelEnabled(true);
-////        chartPanel.setPreferredSize(new Dimension(500, 270));
-//        this.setContentPane(chartPanel);
     }
 
+    /**
+     * Formats the data correctly
+     * @param data
+     * @param time
+     * @return
+     */
     private static IntervalXYDataset createDataset(double[] data, int[] time) {
         //legend or key goes here
         final XYSeries series = new XYSeries("");
@@ -72,6 +71,12 @@ public class BarChart extends ApplicationFrame {
 
     }
 
+    /**
+     * Shows a interval bar chart
+     * @param dataset data
+     * @param chartName chart name
+     * @return
+     */
     private static JFreeChart createChart(IntervalXYDataset dataset, String chartName) {
         JFreeChart chart = ChartFactory.createXYBarChart(chartName, "Frequency",false, "Amplitude", dataset, PlotOrientation.VERTICAL, true, true, false);
         chart.setBackgroundPaint(Color.white);

@@ -44,6 +44,9 @@ public class ScoreEngine {
 
     }
 
+    /**
+     * Calculates score on a data set
+     */
     public void calculateScore(){
 //        Get current user
         User currentUser = getCurrentUser();
@@ -86,6 +89,10 @@ public class ScoreEngine {
         }
     }
 
+    /**
+     * Retrieves the current user for the data being processed
+     * @return
+     */
     private User getCurrentUser(){
         Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();
         AuthenticationJsonWebToken authenticationJsonWebToken = (AuthenticationJsonWebToken) authentication;
@@ -94,6 +101,11 @@ public class ScoreEngine {
         return userService.findByGoogleId(oauthId);
     }
 
+    /**
+     * Calculates the stress score for GSR or RR
+     * @param stressType
+     * @return
+     */
     private int StressScore(int stressType){
 
         boolean isStressedNow;
@@ -138,7 +150,7 @@ public class ScoreEngine {
     }
 
     /**
-     *
+     *  Calculates a score based on the calorie intake and respective gender
      * @param user user in question
      * @param foods foods consumed during the day
      * @return score from 1 to 10
@@ -169,9 +181,16 @@ public class ScoreEngine {
 
     }
 
+    /**
+     * Generates a score from 1-10 on time the food was eaten
+     * @param userPreferences
+     * @param foods
+     * @return
+     */
     private int timeEatenScore(UserPreference[] userPreferences, Food[] foods){
         int foodsInCorrectPeriod = 0;
 
+        //Get foods during the day
         for (Food food: foods) {
             for (UserPreference userPreference:userPreferences) {
                 boolean inRange = isInRange(userPreference.getStartTime(), userPreference.getEndTime(), food.getTimestamp());
@@ -186,7 +205,13 @@ public class ScoreEngine {
         return (int) Math.round(result);
     }
 
-
+    /***
+     * Compares dates
+     * @param startTime preferences start time
+     * @param endTime preferences end time
+     * @param timeStamp time being compared
+     * @return
+     */
     private boolean isInRange(String startTime, String endTime, long timeStamp){
         String[] startTimeNums = startTime.split(":");
         String[] endTimeNums = endTime.split(":");
@@ -225,7 +250,12 @@ public class ScoreEngine {
         }
     }
 
-//    Should have very low weighting as it only has a very low effect
+    /***
+     * Creates score based on user external factors
+     * This should have very low weighting as it only has a very low effect on short term stress
+     * @param user
+     * @return
+     */
     private int userScore(User user){
         int score = 0;
 
@@ -286,6 +316,10 @@ public class ScoreEngine {
         return getDate.compareTo(startDate) > 0;
     }
 
+    /**
+     * Updates unclassified data points in mySql to the correct datatype
+      * @param dataPointType
+     */
     private void updateStressStatus(DataPointType dataPointType){
         //Current user
         Authentication authentication  = SecurityContextHolder.getContext().getAuthentication();

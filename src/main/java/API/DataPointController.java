@@ -27,6 +27,8 @@ public class DataPointController extends MainController {
                                  UserPreferenceService userPreferenceService) {
         this.dataPointService = dataPointService;
         this.dataPointMetaService = dataPointMetaService;
+
+        //Update daily score
         scoreEngine = new ScoreEngine(dataPointService, dataPointMetaService,  scoreService, foodService, userService, userPreferenceService);
     }
 

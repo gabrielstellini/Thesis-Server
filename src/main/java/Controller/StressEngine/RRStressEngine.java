@@ -15,6 +15,10 @@ public class RRStressEngine extends Engine{
         super(dataPointService, dataPointMetaService);
     }
 
+    /**
+     * Compares calm data points to the unprocessed data points
+     * @return stress detection
+     */
     public boolean checkIfStressedRR(){
         List<DataPoint> calmDataPoints = getBaselineData();
         double[] fftCalmDataPoints = doRRFFT(calmDataPoints);
@@ -28,26 +32,32 @@ public class RRStressEngine extends Engine{
         return result;
     }
 
+    /**
+     * Runs FFT on GSR data points
+     * @param dataPointList data
+     * @return fft result
+     */
     private double[] doRRFFT(List<DataPoint> dataPointList){
         //convert to the correct type
-
         LinkedList<Double> RRs = new LinkedList<>();
 
         for (DataPoint dp: dataPointList) {
             RRs.add(dp.getRRInterval());
         }
-
-
         double[] RRsAsArr = RRs.stream().mapToDouble(i->i).toArray();
 
-
-//        System.out.println("Starting FFT");
         //run fft
         DoubleFFT_1D doubleFFT_1D = new DoubleFFT_1D(dataPointList.size() -1);
         doubleFFT_1D.realForward(RRsAsArr);
         return RRsAsArr;
     }
 
+    /**
+     * Calculates standard deviation for both datasets and checks if the standard deviation is smaller for calm
+     * @param calmStressData calm data set
+     * @param unknownStress unclassified data set
+     * @return standard deviation is smaller for calm
+     */
     private boolean standardDeviationStressCalc(double[] calmStressData, double[] unknownStress){
         double calmStressMetric = standardDeviation(calmStressData, 2);
         double unknownStressMetric = standardDeviation(unknownStress, 2);
@@ -56,7 +66,12 @@ public class RRStressEngine extends Engine{
     }
 
 
-
+    /**
+     * Returns whether the unclassified dataset is stressed
+     * @param calmStressMetric
+     * @param unknownStressMetric
+     * @return
+     */
     private boolean isStressed(double[] calmStressMetric, double[] unknownStressMetric){
         return standardDeviationStressCalc(calmStressMetric, unknownStressMetric);
 //        return true;
@@ -64,6 +79,11 @@ public class RRStressEngine extends Engine{
     }
 
 
+    /**
+     * Shows FFT graph for a set of data points
+     * @param chartName chart title
+     * @param dataPointList data
+     */
     public void showFFT(String chartName, List<DataPoint> dataPointList){
         cleanData(dataPointList);
         double[] fftResult = doRRFFT(dataPointList);
@@ -71,7 +91,11 @@ public class RRStressEngine extends Engine{
         showBarChart(chartName, fftResult, numList);
     }
 
-    public void showFFTs(String chartName, List<DataPoint> dataPointList){
+    /**
+     * Shows unprocessed data points and calm data points against each other
+     * @param chartName chart title
+     */
+    public void showFFTs(String chartName){
 
         List<DataPoint> dataPointList1 = getBaselineData();
         List<DataPoint> dataPointList2 = getUnprocessedData();

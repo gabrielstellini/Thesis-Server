@@ -44,6 +44,11 @@ public class PoincarePlot extends ApplicationFrame {
         setContentPane(panel);
     }
 
+    /**
+     * Formats the data to XYDataset
+     * @param rrInterval
+     * @return
+     */
     private XYDataset createDataset(double[] rrInterval) {
         XYSeriesCollection dataset = new XYSeriesCollection();
 
@@ -56,18 +61,6 @@ public class PoincarePlot extends ApplicationFrame {
 
         dataset.addSeries(series1);
 
-//        dataset.addSeries(series2);
-
         return dataset;
     }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            ScatterPlotExample example = new ScatterPlotExample("Scatter Chart Example | BORAJI.COM");
-//            example.setSize(800, 400);
-//            example.setLocationRelativeTo(null);
-//            example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//            example.setVisible(true);
-//        });
-//    }
 }
